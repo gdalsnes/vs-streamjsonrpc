@@ -136,7 +136,7 @@ namespace StreamJsonRpc
                         {
                             using (var gzipStream = new GZipStream(contentSequenceBuilder.AsReadOnlySequence.AsStream(), CompressionMode.Decompress))
                             {
-                                gzipStream.CopyTo(contentSequenceBuilder2.AsStream(), this.sizeHint);
+                                gzipStream.CopyTo(contentSequenceBuilder2.AsStream());
                             }
 
                             return this.Formatter.Deserialize(contentSequenceBuilder2);
@@ -177,7 +177,7 @@ namespace StreamJsonRpc
                     {
                         using (var gzipStream = new GZipStream(contentSequenceBuilder2.AsStream(), CompressionLevel.Fastest))
                         {
-                            contentSequenceBuilder.AsReadOnlySequence.AsStream().CopyTo(gzipStream, this.sizeHint);
+                            contentSequenceBuilder.AsReadOnlySequence.AsStream().CopyTo(gzipStream);
                         }
 
                         messageType = WebSocketMessageType.Binary;
